@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <% static = process.env.NODE_ENV === 'production' ? 'dest' : 'src' %>
+    <link rel='stylesheet' href='<%= static %>/stylesheets/style.css'/>
+</head>
+<body>
+<div id="tips">海岸线小说网爬小说，请将小说详情页url或章节页url放入框中</div>
+<div class="content">
+    <label for="input" id="input-label">请输入小说的url：</label>
+    <input type="text" id="input" name="input" value="">
+    <button type="button" id="submit">提交</button>
+    <div id="download-content">
+        <a href="" id="downloader">点我下载</a>
+        <span id="txt-title">title</span>
+    </div>
+    <ul id="message-content"></ul>
+</div>
+<script type="text/javascript" src="/plugin/socket.io.js"></script>
+<script type="text/javascript" src="<%= static %>/javascripts/index.js"></script>
+</body>
+</html>
