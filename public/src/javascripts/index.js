@@ -59,10 +59,10 @@ function connectSocket() {
 }
 
 // 加入状态变化消息
-function addMessage(msg, color) {
+function addMessage(msg, color = '#000000') {
 	const li = document.createElement('li');
 	li.innerText = msg;
-	li.style.color = color || '#000000';
+	li.style.color = color;
 	messageContent.appendChild(li);
 }
 

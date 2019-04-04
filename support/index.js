@@ -19,8 +19,8 @@ class Downloader {
 
 	// 爬取小说
 	async download() {
-		this.emitter.emit('stateChange', 'requesting chapter page');
-		const outerHtml = await this.fetcher.fetch(this.url);
+		this.emitter.emit('stateChange', 'requesting outer page');
+		const outerHtml = await this.fetcher.fetchOuterPage(this.url);
 		// 如果没有返回内容，即出错，中断任务
 		if (!outerHtml) {
 			return;
