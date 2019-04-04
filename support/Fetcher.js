@@ -2,13 +2,16 @@ const request = require('request-promise'),	// promise版的request，返回prom
 	iconv = require('iconv-lite');	// buffer编码用
 
 // 请求内页失败时，尝试次数
-const FETCH_TIMES = 3;
+const FETCH_TIMES = 4;
+const TIME_OUT = 15000;
 
 const options = {
 	// 编码工作放到transform中完成
 	encoding: null,
 	// 为true并且header里Accept-Encoding中有gzip的话，可接收gzip格式，节约带宽
 	gzip: true,
+	// 设置超时时间
+	timeout: TIME_OUT,
 	headers: {
 		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
 		'Accept-Encoding': 'gzip, deflate, br',
@@ -61,8 +64,9 @@ class Fetcher {
 						.then(resolve)
 						// 如果失败，本promise要resolve一个提示信息来替代
 						.catch(err => {
-							this.emitter.emit('stateChange', `获取第${+chapter+1}章失败`);
-							resolve(`获取第${+chapter+1}章失败`);
+							console.log('outer err');
+							this.emitter.emit('stateChange', `获取第${+chapter + 1}章失败`);
+							resolve(`获取第${+chapter + 1}章失败`);
 						})
 				})
 			);
