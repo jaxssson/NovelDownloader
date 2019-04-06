@@ -87,7 +87,7 @@ class Fetcher {
 			times--;
 			return new Promise(resolve => {
 				promise.then(resolve).catch((err) => {
-					resolve(this.fetchOnePage(url, times));
+					resolve(this.fetchOnePage(url, times, handler));
 				})
 			});
 		}
